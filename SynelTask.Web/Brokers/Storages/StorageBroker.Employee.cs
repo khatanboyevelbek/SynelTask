@@ -18,5 +18,8 @@ namespace SynelTask.Web.Brokers.Storages
 
         public async ValueTask<Employee> UpdateEmployeeAsync(Employee employee) =>
           await UpdateAsync(employee);
+
+        public async ValueTask<Employee> DeleteEmployeeAsync(Employee employee) =>
+          await DeleteAsync(employee);
     }
 }
