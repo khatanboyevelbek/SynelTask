@@ -9,5 +9,8 @@ namespace SynelTask.Web.Brokers.Storages
 
         public async ValueTask<Employee> InsertEmployeeAsync(Employee employee) =>
             await InsertAsync(employee);
+
+        public IQueryable<Employee> SelectEmployeesAsync() =>
+            SelectAll<Employee>();
     }
 }
