@@ -12,5 +12,8 @@ namespace SynelTask.Web.Brokers.Storages
 
         public IQueryable<Employee> SelectEmployeesAsync() =>
             SelectAll<Employee>();
+
+        public async ValueTask<Employee> SelectEmployeeByIdAsync(Guid employeeId) =>
+            await SelectAsync<Employee>(employeeId);
     }
 }
