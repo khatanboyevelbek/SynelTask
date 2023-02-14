@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SynelTask.Web.Brokers.Storages;
 
@@ -11,9 +12,11 @@ using SynelTask.Web.Brokers.Storages;
 namespace SynelTask.Web.Migrations
 {
     [DbContext(typeof(StorageBroker))]
-    partial class StorageBrokerModelSnapshot : ModelSnapshot
+    [Migration("20230214021516_AddEmployeeConfigurations")]
+    partial class AddEmployeeConfigurations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

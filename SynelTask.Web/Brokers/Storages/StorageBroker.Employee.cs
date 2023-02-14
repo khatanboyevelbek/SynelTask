@@ -10,7 +10,7 @@ namespace SynelTask.Web.Brokers.Storages
         public async ValueTask<Employee> InsertEmployeeAsync(Employee employee) =>
             await InsertAsync(employee);
 
-        public IQueryable<Employee> SelectEmployeesAsync() =>
+        public IQueryable<Employee> SelectAllEmployees() =>
             SelectAll<Employee>();
 
         public async ValueTask<Employee> SelectEmployeeByIdAsync(Guid employeeId) =>
@@ -21,5 +21,10 @@ namespace SynelTask.Web.Brokers.Storages
 
         public async ValueTask<Employee> DeleteEmployeeAsync(Employee employee) =>
           await DeleteAsync(employee);
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            ConfigureEmployee(modelBuilder.Entity<Employee>());
+        }
     }
 }
