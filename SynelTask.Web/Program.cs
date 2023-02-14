@@ -1,6 +1,7 @@
 using SynelTask.Web.Brokers.Loggings;
 using SynelTask.Web.Brokers.Storages;
 using SynelTask.Web.Services.Foundations.Employees;
+using SynelTask.Web.Services.Orchestrations.Employee;
 using SynelTask.Web.Services.Processings.Employees;
 
 namespace SynelTask.Web
@@ -17,6 +18,7 @@ namespace SynelTask.Web
             RegisterBrokers(builder.Services);
             RegisterFoundationServices(builder.Services);
             RegisterProcessingServices(builder.Services);
+            RegisterOrchestrationServices(builder.Services);
 
             var app = builder.Build();
 
@@ -56,6 +58,11 @@ namespace SynelTask.Web
         private static void RegisterProcessingServices(IServiceCollection services)
         {
             services.AddTransient<IEmployeeProcessingService, EmployeeProcessingService>();
+        }
+
+        private static void RegisterOrchestrationServices(IServiceCollection services)
+        {
+            services.AddTransient<IEmployeeOrchestrationService, EmployeeOrchestrationService>();
         }
     }
 }
