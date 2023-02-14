@@ -1,3 +1,4 @@
+using SynelTask.Web.Brokers.Loggings;
 using SynelTask.Web.Brokers.Storages;
 
 namespace SynelTask.Web
@@ -40,6 +41,7 @@ namespace SynelTask.Web
         private static void RegisterBrokers(IServiceCollection services)
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ILogginBroker, LoggingBroker>();
         }
     }
 }
