@@ -25,6 +25,7 @@ namespace SynelTask.Web.Services.Processings.Employees
         public async Task<int> ImportExternalFileToTable(IFormFile postedFile)
         {
             string uploadedFilePath = await UploadFileAndGetFilePath(postedFile);
+            int rows = 0;
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -38,9 +39,11 @@ namespace SynelTask.Web.Services.Processings.Employees
 
                 foreach (Employee record in records)
                 {
+                    rows++;
+
                     var employee = new Employee()
                     {
-                        Id = record.Id,
+                        Id = Guid.NewGuid(),
                         PayrollNumber = record.PayrollNumber,
                         Forename = record.Forename,
                         Surname = record.Surname,
@@ -52,15 +55,28 @@ namespace SynelTask.Web.Services.Processings.Employees
                         Postcode = record.Postcode,
                         EmailHome = record.EmailHome,
                         StartDate = record.StartDate,
-                        CreatedDate = record.CreatedDate,
-                        UpdatedDate = record.UpdatedDate,
+                        CreatedDate = DateTimeOffset.Now,
+                        UpdatedDate = DateTimeOffset.Now,
                     };
 
                     await this.employeeService.AddEmployeeAsync(employee);
                 }
 
-                return records.Count();
+                return rows;
             }
+        }
+
+        public IQueryable<Employee> RetrieveAllEmployees(string orderBy)
+        {
+            IQueryable<Employee> employees = 
+                this.employeeService.RetrieveAllEmployees();
+
+            return orderBy switch
+            {
+                "forename" => employees.OrderBy(e => e.Forename),
+                "surname" => employees.OrderBy(e => e.Surname),
+                _ => employees
+            };
         }
 
         private async Task<string> UploadFileAndGetFilePath(IFormFile postedFile)
@@ -90,6 +106,7 @@ namespace SynelTask.Web.Services.Processings.Employees
                 return pathOfFile;
             }
 
+            this.loggingBroker.LogError("File type is not supported. Try again");
             throw new NotSupportedFileException();
         }
     }
