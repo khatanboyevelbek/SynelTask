@@ -1,10 +1,10 @@
 ﻿namespace SynelTask.Web.Brokers.Loggings
 {
-    public class LoggingBroker : ILogginBroker
+    public class LogginBroker : ILogginBroker
     {
         private readonly ILogger logger;
 
-        public LoggingBroker(ILogger<LoggingBroker> logger) =>
+        public LogginBroker(ILogger<LogginBroker> logger) =>
              this.logger = logger;
 
         public void LogCritical(Exception exception) =>
