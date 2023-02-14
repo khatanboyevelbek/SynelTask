@@ -1,16 +1,23 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SynelTask.Web.Brokers.Loggings;
 using SynelTask.Web.Models;
+using SynelTask.Web.Models.Foundations.Employees;
+using SynelTask.Web.Models.Foundations.Employees.Exceptions;
+using SynelTask.Web.Services.Processings.Employees;
 
 namespace SynelTask.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogginBroker loggingBroker;
+        private readonly IEmployeeProcessingService employeeProcessingService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogginBroker loggingBroker,
+            IEmployeeProcessingService employeeProcessingService)
         {
-            _logger = logger;
+            this.loggingBroker = loggingBroker;
+            this.employeeProcessingService = employeeProcessingService;
         }
 
         public IActionResult Index()
@@ -18,9 +25,56 @@ namespace SynelTask.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async ValueTask<IActionResult> Index(IFormFile postedFile)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    int rows =
+                        await this.employeeProcessingService.ImportExternalFileToTable(postedFile);
+
+                    TempData["success"] = string.Format("{0} rows added successfuly", rows);
+
+                    return RedirectToAction("Data");
+                }
+
+                this.loggingBroker.LogError("File is required");
+                TempData["error"] = "File is required";
+
+                return View();
+            }
+            catch (NotSupportedFileException exception)
+            {
+                this.loggingBroker.LogError(exception.Message);
+                TempData["error"] = $"{exception.Message}";
+                return View();
+            }
+            catch (InvalidCastException exception)
+            {
+                this.loggingBroker.LogError("Invalid cast error occured");
+                return RedirectToAction("Error");
+            }
+            catch (FormatException exception)
+            {
+                this.loggingBroker.LogError("Format error occured");
+                return RedirectToAction("Error");
+            }
+            catch (Exception exception)
+            {
+                this.loggingBroker.LogError("Internal server error");
+                return RedirectToAction("Error");
+            }
+        }
+
+        public IActionResult Data(string orderBy = null)
+        {
+            IQueryable<Employee> employees =
+                this.employeeProcessingService.RetrieveAllEmployees(orderBy);
+
+            return View(employees);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
