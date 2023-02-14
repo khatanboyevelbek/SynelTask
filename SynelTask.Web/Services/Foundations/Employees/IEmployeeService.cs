@@ -7,5 +7,6 @@ namespace SynelTask.Web.Services.Foundations.Employees
         ValueTask<Employee> AddEmployeeAsync(Employee employee);
         IQueryable<Employee> RetrieveAllEmployees();
         ValueTask<Employee> RetrieveEmployeeByIdAsync(Guid employeeId);
+        ValueTask<Employee> ModifyEmployeeAsync(Employee employee);
     }
 }
