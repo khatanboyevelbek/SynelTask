@@ -5,5 +5,6 @@ namespace SynelTask.Web.Services.Foundations.Employees
     public interface IEmployeeService
     {
         ValueTask<Employee> AddEmployeeAsync(Employee employee);
+        IQueryable<Employee> RetrieveAllEmployees();
     }
 }
