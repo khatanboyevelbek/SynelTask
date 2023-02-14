@@ -63,8 +63,6 @@ namespace SynelTask.Web.Brokers.Storages
         }
 
         public override void Dispose()
-        {
-            base.Dispose();
-        }
+        {}
     }
 }
