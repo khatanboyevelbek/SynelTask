@@ -1,0 +1,9 @@
+﻿using SynelTask.Web.Models.Foundations.Employees;
+
+namespace SynelTask.Web.Services.Foundations.Employees
+{
+    public interface IEmployeeService
+    {
+        ValueTask<Employee> AddEmployeeAsync(Employee employee);
+    }
+}
