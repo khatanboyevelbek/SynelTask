@@ -1,3 +1,5 @@
+using SynelTask.Web.Brokers.Storages;
+
 namespace SynelTask.Web
 {
     public class Program
@@ -8,6 +10,8 @@ namespace SynelTask.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<StorageBroker>();
+            RegisterBrokers(builder.Services);
 
             var app = builder.Build();
 
@@ -31,6 +35,11 @@ namespace SynelTask.Web
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+        }
+
+        private static void RegisterBrokers(IServiceCollection services)
+        {
+            services.AddTransient<IStorageBroker, StorageBroker>();
         }
     }
 }
