@@ -1,5 +1,6 @@
 using SynelTask.Web.Brokers.Loggings;
 using SynelTask.Web.Brokers.Storages;
+using SynelTask.Web.Services.Foundations.Employees;
 
 namespace SynelTask.Web
 {
@@ -13,6 +14,7 @@ namespace SynelTask.Web
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<StorageBroker>();
             RegisterBrokers(builder.Services);
+            RegisterFoundationServices(builder.Services);
 
             var app = builder.Build();
 
@@ -42,6 +44,11 @@ namespace SynelTask.Web
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ILogginBroker, LoggingBroker>();
+        }
+
+        private static void RegisterFoundationServices(IServiceCollection services)
+        {
+            services.AddTransient<IEmployeeService, EmployeeService>();
         }
     }
 }
