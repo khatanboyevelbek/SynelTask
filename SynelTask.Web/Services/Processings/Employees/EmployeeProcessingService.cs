@@ -79,6 +79,9 @@ namespace SynelTask.Web.Services.Processings.Employees
             };
         }
 
+        public async ValueTask<Employee> RetrieveEmployeeById(Guid employeeId) =>
+            await this.employeeService.RetrieveEmployeeByIdAsync(employeeId);
+
         private async Task<string> UploadFileAndGetFilePath(IFormFile postedFile)
         {
             string pathOfFile = string.Empty;
