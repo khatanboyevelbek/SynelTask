@@ -17,5 +17,8 @@ namespace SynelTask.Web.Services.Foundations.Employees
 
         public IQueryable<Employee> RetrieveAllEmployees() =>
             this.storageBroker.SelectAllEmployees();
+
+        public async ValueTask<Employee> RetrieveEmployeeByIdAsync(Guid employeeId) =>
+            await this.storageBroker.SelectEmployeeByIdAsync(employeeId);
     }
 }
