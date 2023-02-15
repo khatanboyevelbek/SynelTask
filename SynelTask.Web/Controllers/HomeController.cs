@@ -38,7 +38,7 @@ namespace SynelTask.Web.Controllers
 
                     TempData["success"] = string.Format("{0} rows added successfuly", rows);
 
-                    return RedirectToAction("Data");
+                    return RedirectToAction("Index","Employee");
                 }
 
                 this.loggingBroker.LogError("File is required");
@@ -67,14 +67,6 @@ namespace SynelTask.Web.Controllers
                 this.loggingBroker.LogError("Internal server error");
                 return RedirectToAction("Error");
             }
-        }
-
-        public IActionResult Data(string orderBy = null)
-        {
-            IQueryable<Employee> employees =
-                this.employeeProcessingService.RetrieveAllEmployees(orderBy);
-
-            return View(employees);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
