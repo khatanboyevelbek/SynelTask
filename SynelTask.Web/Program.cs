@@ -14,6 +14,7 @@ namespace SynelTask.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<StorageBroker>();
+            AddCors(builder.Services);
             RegisterBrokers(builder.Services);
             RegisterFoundationServices(builder.Services);
             RegisterProcessingServices(builder.Services);
@@ -32,6 +33,7 @@ namespace SynelTask.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
@@ -41,6 +43,19 @@ namespace SynelTask.Web
 
             app.Run();
         }
+
+        private static void AddCors(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH"));
+            });
+        }    
 
         private static void RegisterBrokers(IServiceCollection services)
         {
