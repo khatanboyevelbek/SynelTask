@@ -1,0 +1,124 @@
+﻿@model Employee;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<section>
+    <div class="container py-1 h-100">
+        <h3 class="mb-4 pb-1 pb-md-0 mb-md-2 text-center">@ViewData["Title"]</h3>
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 10px;">
+                    <div class="card-body p-2 p-md-3">
+                        <form method="post" asp-action="Edit" asp-route-id="@Model.Id">
+                            <input asp-for="Id" name="Id" type="text" hidden />
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="payrolNumber">Payroll Number</label>
+                                        <input asp-for="PayrollNumber" name="PayrollNumber" type="text" id="payrollNumber" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="forename">Forename</label>
+                                        <input asp-for="Forename" name="Forename" type="text" id="forename" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-outline">
+                                        <label for="dateOfBirth" class="form-label">Date of birth</label>
+                                        <input asp-for="DateOfBirth" name="DateOfBirth" type="date" class="form-control" id="dateOfBirth" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="surname">Surname</label>
+                                        <input asp-for="Surname" name="Surname" type="text" id="surname" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="telephone" class="form-label">Telephone</label>
+                                        <input asp-for="Telephone" name="Telephone" type="text" class="form-control" id="telephone" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="mobile" class="form-label">Mobile</label>
+                                        <input asp-for="Mobile" name="Mobile" type="text" class="form-control" id="mobile" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="address1" class="form-label">Address1</label>
+                                        <input asp-for="Address1" name="Address1" type="text" class="form-control" id="address1" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="address2" class="form-label">Address2</label>
+                                        <input asp-for="Address2" name="Address2" type="text" class="form-control" id="address2" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="postcode" class="form-label">Postcode</label>
+                                        <input asp-for="Postcode" name="Postcode" type="text" class="form-control" id="postcode" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="emailHome" class="form-label">Home Email</label>
+                                        <input asp-for="EmailHome" name="EmailHome" type="email" class="form-control" id="emailHome" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3 pb-2">
+
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="startDate" class="form-label">StartDate</label>
+                                        <input type="date" name="StartDate" class="form-control" asp-for="StartDate" id="startDate" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <input type="datetime" asp-for="CreatedDate" name="CreatedDate" id="createdDate" hidden />
+                            <input type="datetime" name="UpdatedDate" value="@DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz")" id="updatedDate" hidden />
+                            <div class="mt-1 pt-1">
+                                <input class="btn btn-primary" type="submit" value="Update" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
