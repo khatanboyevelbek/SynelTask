@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynelTask.Web", "SynelTask.Web\SynelTask.Web.csproj", "{B1EC85E7-F560-48A2-8298-FB7CC97045BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynelTask.Test.Unit", "SynelTask.Test.Unit\SynelTask.Test.Unit.csproj", "{C5BC575C-99F0-494E-9C5F-91579645EC62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1EC85E7-F560-48A2-8298-FB7CC97045BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EC85E7-F560-48A2-8298-FB7CC97045BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EC85E7-F560-48A2-8298-FB7CC97045BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EC85E7-F560-48A2-8298-FB7CC97045BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BC575C-99F0-494E-9C5F-91579645EC62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5BC575C-99F0-494E-9C5F-91579645EC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5BC575C-99F0-494E-9C5F-91579645EC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5BC575C-99F0-494E-9C5F-91579645EC62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE6921EC-AC87-4277-B7E8-3E7CFDD405F7}
+	EndGlobalSection
+EndGlobal

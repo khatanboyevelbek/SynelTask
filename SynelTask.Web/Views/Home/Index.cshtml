@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<partial name="_Notification"></partial>
+
+<div class="file-handler-form">
+    <form class="form-control" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Select file</label>
+            <input class="form-control" name="postedFile" type="file" id="formFile">
+            <small class="text-muted">csv file is supported</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<partial name="_ValidationScriptsPartial"></partial>
